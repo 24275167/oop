@@ -24,3 +24,45 @@ class HealthProfessional {
         System.out.println("Description: " + description);
     }
 }
+// Part 2 GeneralPractitioner;
+class GeneralPractitioner extends HealthProfessional {
+
+    // default constructor
+    public GeneralPractitioner() {
+
+    }
+
+    // init constructor
+    public GeneralPractitioner(int id, String name, String description) {
+        super(id, name, description);
+    }
+
+    // print printDetails
+    @Override
+    public void printDetails() {
+        super.printDetails();
+    }
+}
+
+// Part 2 other specialty doctor Dietitian;
+class Dietitian extends HealthProfessional {
+
+    final String specialty = "Dietitian";
+
+    // default constructor
+    public Dietitian() {
+
+    }
+
+    // init constructor
+    public Dietitian(int id, String name, String description) {
+        super(id, name, description);
+    }
+
+    // print Details
+    @Override
+    public void printDetails() {
+        super.printDetails();
+        System.out.println("Specialty: " + this.specialty);
+    }
+}
