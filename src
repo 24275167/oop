@@ -66,3 +66,33 @@ class Dietitian extends HealthProfessional {
         System.out.println("Specialty: " + this.specialty);
     }
 }
+// Part 4 Appointment;
+class Appointment {
+
+    String patientName;
+    String patientPhone;
+    String time;
+    HealthProfessional doctor;
+
+    // default constructor
+    public Appointment() {
+
+    }
+
+    // init constructor
+    public Appointment(String patientName, String patientPhone, String time, HealthProfessional doctor) {
+        this.patientName = patientName;
+        this.patientPhone = patientPhone;
+        this.time = time;
+        this.doctor = doctor;
+    }
+
+    // print Details
+    public void printDetails() {
+        System.out.println("Patient Name: " + patientName);
+        System.out.println("Patient Phone: " + patientPhone);
+        System.out.println("Time Slot: " + time);
+        System.out.print("Doctor: ");
+        doctor.printDetails();
+    }
+}
