@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 // Part 1 HealthProfessional;
 class HealthProfessional {
     private int id;
@@ -94,5 +94,94 @@ class Appointment {
         System.out.println("Time Slot: " + time);
         System.out.print("Doctor: ");
         doctor.printDetails();
+    }
+}
+
+// AssignmentOne主类;
+public class AssignmentOne {
+    // appointments list;
+    private static ArrayList<Appointment> appointments = new ArrayList<>();
+
+    public static void main(String[] args) {
+        System.out.println("-------------------- Part 3--------------------");
+        // Part 3;
+        // GeneralPractitioner;
+        GeneralPractitioner gp1 = new GeneralPractitioner(1, "Dr. Smith",
+                "Experienced General Practitioner specializing in family care");
+        GeneralPractitioner gp2 = new GeneralPractitioner(2, "Dr. Allen",
+                "Friendly GP with a focus on preventive care");
+        GeneralPractitioner gp3 = new GeneralPractitioner(3, "Dr. Wang",
+                "Specialized in cardiology and internal medicine");
+        gp1.printDetails();
+        System.out.println("------------------------------");
+        gp2.printDetails();
+        System.out.println("------------------------------");
+        gp3.printDetails();
+        System.out.println("------------------------------");
+
+        // Dietitian;
+        Dietitian dietitian1 = new Dietitian(4, "Ms. Carter",
+                "Certified Dietitian with expertise in weight management and nutrition counseling");
+        Dietitian dietitian2 = new Dietitian(5, "Mr. Green",
+                "Licensed Dietitian focusing on personalized nutrition plans for chronic diseases");
+        dietitian1.printDetails();
+        System.out.println("------------------------------");
+        dietitian2.printDetails();
+        System.out.println("------------------------------");
+
+        System.out.println("-------------------Part 5---------------------");
+        // Part5;
+        // createAppointment;
+        createAppointment("John Doe", "1234567890", "10:00", gp1);
+        createAppointment("Jane Smith", "0987654321", "11:00", gp2);
+        createAppointment("Mark Brown", "1122334455", "14:30", dietitian1);
+        createAppointment("Mark", "1234999999", "14:30", dietitian2);
+
+        // Appointments;
+        printExistingAppointments();
+
+        // cancel
+        cancelBooking("1234567890");
+
+        // Canceled Appointments;
+        printExistingAppointments();
+
+        // cancel error;
+        cancelBooking("000000000");
+    }
+
+    // create appointment;
+    public static void createAppointment(String bookerName, String bookerPhone, String time,
+            HealthProfessional health) {
+        Appointment appointment = new Appointment(bookerName, bookerPhone, time, health);
+        appointments.add(appointment);
+    }
+
+    // cancel booking;
+    public static void cancelBooking(String patientPhone) {
+        boolean found = false;
+        for (int i = 0; i < appointments.size(); i++) {
+            if (appointments.get(i).patientPhone.equals(patientPhone)) {
+                appointments.remove(i);
+                System.out.println("Canceled appointment: " + patientPhone);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("error: not found" + patientPhone);
+        }
+    }
+
+    // print appointments;
+    public static void printExistingAppointments() {
+        if (appointments.isEmpty()) {
+            System.out.println("appointments is empty");
+        } else {
+            for (Appointment appointment : appointments) {
+                appointment.printDetails();
+                System.out.println("------------------------------");
+            }
+        }
     }
 }
